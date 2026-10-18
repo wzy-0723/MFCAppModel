@@ -23,6 +23,7 @@
 *.dll
 *.so.*
 
+
 # Fortran module files
 *.mod
 *.smod
@@ -42,6 +43,16 @@
 build/
 Build/
 build-*/
+
+# build
+/out
+/build
+*.qtcreator
+
+# .vscode
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/settings.json
 
 # CMake generated files
 CMakeFiles/
