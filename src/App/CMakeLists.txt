@@ -3,8 +3,6 @@ project(MFCApplication)
  
 set(CMAKE_MFC_FLAG 2) # 1: use static MFC library; 2: use shared MFC library
 
-message(STATUS "current source dir: ${CMAKE_CURRENT_SOURCE_DIR}")
-
 # 递归搜索源码
 file(GLOB_RECURSE head *.h *.hpp)
 file(GLOB_RECURSE cpp *.cpp *.c)
@@ -17,11 +15,22 @@ source_group_by_dir(all_sourcefile ${cur_path})
 add_executable(${PROJECT_NAME} WIN32
     ${all_sourcefile}
 )
-target_include_directories(${PROJECT_NAME} PUBLIC 
+
+# 链接库
+target_link_libraries(${PROJECT_NAME} 
+	Common
+)
+
+
+target_include_directories(${PROJECT_NAME} PUBLIC
 	./
 	./dlg
 	./control
+	${src_dir_path}/Common
 )
+
+CONFIG_OUTPUT_PATHS(${PROJECT_NAME})
+
 # set install path
 set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/install/${CMAKE_BUILD_TYPE}" CACHE PATH "" FORCE)
 message(STATUS "cmake_install_prefix: ${CMAKE_INSTALL_PREFIX}")
